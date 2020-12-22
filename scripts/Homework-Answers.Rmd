@@ -1,0 +1,12 @@
+---
+title: "Homework Answers"
+author: "Emily Markowitz"
+date: "12/22/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+> This is a place holder! Answers will be up when class starts.
