@@ -301,7 +301,7 @@ library(mgcv)
 
 # And for these examples, we will use the mpg dataset
 
-# ****** Sub-ex 1: simplest model with 1 continuous variable -------
+# ****** 1: Simplest model with 1 continuous variable -------
 
 # data
 str(mpg)
@@ -338,7 +338,7 @@ mpg_gam1_pred %>%
   theme_bw()
 
 
-# ****** Sub-ex 2: 2 continous variables --------------
+# ****** 2: 2 continous variables --------------
 
 # Data
 str(mpg)
@@ -371,7 +371,7 @@ mpg_gam2_pred %>%
   #           label = gam_eqn(orings), parse = TRUE) +
   theme_bw()
 
-# ****** Sub-ex 3: Have a linear term (without s() smoother) --------
+# ****** 3: Have a linear term (without s() smoother) --------
 
 # data
 str(mpg)
@@ -400,7 +400,7 @@ library(tidymv)
 mpg_gam3_pred <- predict_gam(mpg_gam3)
 
 
-# ****** Sub-ex 4: adding categorical variables --------
+# ****** 4: adding categorical variables --------
 
 # data
 str(mpg)
@@ -433,16 +433,40 @@ gam.check(mpg_gam4)
 library(tidymv)
 mpg_gam4_pred <- predict_gam(mpg_gam4)
 
+# ****** 5: Setting a family type --------
+
+# data
+str(mpg)
+
+# We're going to go back to our formula from the first gam
+fm <- hwy ~ s(displ)
+
+# up to now, we've just been playing with gaussian family GAM models. In a quick example, I'll add a family = Gamma(link = log) in so you can see it in action. 
+
+mpg_gam5 <- gam(
+  formula = fm,
+  family = Gamma(link=log),
+  data = mpg
+)
+summary(mpg_gam5)
+broom::tidy(mpg_gam5)
+
+plot(mpg_gam5,pages=1,residuals=TRUE)  ## show partial residuals
+plot(mpg_gam5,pages=1,seWithMean=TRUE) ## `with intercept' CIs
+## run some basic model checks, including checking
+## smoothing basis dimensions...
+gam.check(mpg_gam5)
+
+library(tidymv)
+mpg_gam5_pred <- predict_gam(mpg_gam5)
+
+
+
 
 # ****** Compare Models ------------
 # Which model is better? The one with the higher AIC!
 # To compare models using AIC, you need to calculate the AIC of each model. If a model is more than 2 AIC units lower than another, then it is considered significantly better than that model.
-AIC(mpg_gam1, mpg_gam2, mpg_gam3, mpg_gam4)
-# ...and we have a clear winner! Congrats model 1, sometimes simple is good and it is really easy to try really complicated things that are not helpful
-
-
-
-
-
+AIC(mpg_gam1, mpg_gam2, mpg_gam3, mpg_gam4, mpg_gam5)
+# ...and we have a winner! Congrats model 1, sometimes simple is good and it is really easy to try really complicated things that are not helpful. Even though adding in the gamma distribution yielded similar model results, it was not better than (or even equal to) the first simple model. 
 
 
