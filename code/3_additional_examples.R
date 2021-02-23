@@ -82,7 +82,7 @@ anova(main_effect_fit, interaction_fit)
 # For this reason, we will conduct further analysis on the model without the interaction.
 
 summary(main_effect_fit)
-
+broom::tidy(main_effect_fit)
 # How to read this: 
 # The chirp rate for each species increases by 3.6 chirps as the temperature increases by a single degree. This term shows strong statistical significance as evidenced by the p-value. The species term has a value of -10.07. This indicates that, across all temperature values, O. niveus has a chirp rate that is about 10 fewer chirps per minute that O. exclamationis. Similar to the temperature term, the species effect is associated with a very small p-value.
 

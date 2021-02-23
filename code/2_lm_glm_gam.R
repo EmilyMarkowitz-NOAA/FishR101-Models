@@ -23,6 +23,7 @@
 # Anscombe's Quartet of ‘Identical’ Simple Linear Regressions
 #?datasets::anscombe
 sim1 <- datasets::anscombe
+sim1
 
 # Let's check out y1 vs x1
 ggplot(sim1, aes(x = x1, y = y1)) + 
@@ -101,7 +102,6 @@ p + geom_point(data = pred,
                mapping = aes(x = x1, y = y1), 
                color = "red")
 # Essentially, by predicting it will just tell you where these values appear along the line of your linear model
-
 
 
 # ****** Polynomial ---------------
@@ -376,7 +376,7 @@ mpg_gam2_pred %>%
 # data
 str(mpg)
 
-# To add a linera variable, simply "+" it in the equation and don't add the variable in the s() smoother
+# To add a linear variable, simply "+" it in the equation and don't add the variable in the s() smoother
 fm <- hwy ~ s(displ) + cty
 # However we rarely make continuous variables linear in gams because if a realtionship is really linear, a snoother will force the shape
 
@@ -400,7 +400,7 @@ library(tidymv)
 mpg_gam3_pred <- predict_gam(mpg_gam3)
 
 
-# ****** 4: adding categorical variables --------
+# ****** 4: Adding categorical variables --------
 
 # data
 str(mpg)
@@ -464,9 +464,9 @@ mpg_gam5_pred <- predict_gam(mpg_gam5)
 
 
 # ****** Compare Models ------------
-# Which model is better? The one with the higher AIC!
+# Which model is WORST? The one with the higher AIC!
 # To compare models using AIC, you need to calculate the AIC of each model. If a model is more than 2 AIC units lower than another, then it is considered significantly better than that model.
 AIC(mpg_gam1, mpg_gam2, mpg_gam3, mpg_gam4, mpg_gam5)
-# ...and we have a winner! Congrats model 1, sometimes simple is good and it is really easy to try really complicated things that are not helpful. Even though adding in the gamma distribution yielded similar model results, it was not better than (or even equal to) the first simple model. 
+# ...and we have a LOSER! Congrats model 1, sometimes simple is good and it is really easy to try really complicated things that are not helpful. Even though adding in the gamma distribution yielded similar model results, it was not better than (or even equal to) the first simple model. 
 
 

@@ -14,8 +14,8 @@ library(modeldata) # This is also loaded by the tidymodels package
 library(modelr)
 # install.packages("tidymv")
 library(tidymv)
-# install.packages("recipies")
-# library(recipies) # not covered here but you should check it out!
+# install.packages("recipes")
+# library(recipes) # not covered here but you should check it out!
 # install.packages("DAAG")
 library(DAAG) # for orings dataset
 
@@ -32,8 +32,8 @@ str(EBS)
 
 haul_catch <- read_csv(here::here("data", "haul_catch.csv"))
 haul_catch <- janitor::clean_names(haul_catch)
-head(EBS)
-str(EBS)
+head(haul_catch)
+str(haul_catch)
 
 
 # tasks -------------------------------------------------------------------
